@@ -20,7 +20,8 @@ const userSchema = new mongoose.Schema({
         required: true
     },
     profilePic:{
-        type: String
+        type: String,
+        default: ''
     },
     paymentMethods: [{
         method:{
@@ -29,18 +30,27 @@ const userSchema = new mongoose.Schema({
         },
         number: {
             type: String
-        }
+        },
     }],
     isActive: {
         type: Boolean,
         default: false
     },
-    isConfirmed: {
+    isVerified: {
         type: Boolean,
         default: false
     },
     passwordResetToken: {
-        type: String
+        type: String,
+        default: null
+    },
+    accountConfirmationToken: {
+        type: String,
+        default: null
+    },
+    role: {
+        type: String,
+        default: 'buyer'
     }
 },{timestamps: true});
 
