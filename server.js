@@ -2,6 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const connectDB = require('./config/db');
+const loggingMiddleware = require('./middlewares/loggingMiddleware');
 dotenv.config();
 
 
@@ -14,10 +15,16 @@ app.use(cors({
     credentials: true
 }));
 
+app.use(loggingMiddleware)
+
 // Sample route
 app.get('/', (req, res) => {
     res.send('Server is running');
 });
+
+app.use('/api/auth', require('./controllers/authController'));
+app.use('/api/users', require('./controllers/userController'));
+app.use('/api/categories', require('./controllers/categoriesController'));
 
 app.listen(process.env.PORT, () => {
     connectDB();

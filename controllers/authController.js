@@ -80,7 +80,7 @@ router.post('/login', async (req, res) => {
 });
 
 
-router.post('/verify-email/:token', async (req, res) => {
+router.patch('/verify-email/:token', async (req, res) => {
     try {
         const { token } = req.params;
 
@@ -95,7 +95,7 @@ router.post('/verify-email/:token', async (req, res) => {
     }
 });
 
-router.post('/resend-verification', async (req, res) => {
+router.patch('/resend-verification', async (req, res) => {
     try {
         const { email } = req.body;
         const user = await User.findOne({ email });
@@ -122,7 +122,7 @@ router.post('/resend-verification', async (req, res) => {
     }
 });
 
-router.post('/forgot-password', async (req, res) => {
+router.patch('/forgot-password', async (req, res) => {
     try {
         const { email } = req.body;
         const user = await User.findOne({ email });
@@ -146,7 +146,7 @@ router.post('/forgot-password', async (req, res) => {
     }
 }); 
 
-router.post('/reset-password/:token', async (req, res) => {
+router.patch('/reset-password/:token', async (req, res) => {
     try {
         const { token } = req.params;
         const { newPassword } = req.body;
